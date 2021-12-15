@@ -17,7 +17,7 @@ public class BatchRepository : IBatchRepository<string>
         _batch = batch;
     }
 
-    public Task<Batch<string>> DeleteItem(Item<string> item)
+    public async Task<Batch<string>> DeleteItem(Item<string> item)
     {
         try
         {
@@ -26,7 +26,10 @@ public class BatchRepository : IBatchRepository<string>
                 throw new ArgumentNullException("Item list is null");
             }
 
-            _batch.Items.
+            // workaround
+            _batch.Items = new Queue<Item<string>>(_batch.Items.Where(items => items.Id != item.Id));
+
+            return _batch;
         }
         catch (Exception ex)
         {
