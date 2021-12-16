@@ -22,14 +22,11 @@ public class FileReader
         return linesList;
     }
 
-    public class PathCombiner
+    public static string CombineInputPaths(List<string> fileToCombine)
     {
-        public static string combineInputPaths(List<string> fileToCombine)
-        {
-            string currentDir = Environment.CurrentDirectory;
-            fileToCombine.Insert(0, currentDir);
-            string fileCombined = Path.GetFullPath(Path.Combine(fileToCombine.ToArray()));
-            return fileCombined;
-        }
+        string currentDir = Directory.GetCurrentDirectory();
+        fileToCombine.Insert(0, currentDir);
+        string fileCombined = Path.GetFullPath(Path.Combine(fileToCombine.ToArray()));
+        return fileCombined;
     }
 }
