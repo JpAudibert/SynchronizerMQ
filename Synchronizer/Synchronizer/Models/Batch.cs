@@ -10,13 +10,20 @@ namespace Synchronizer.Models
     {
         public int Id { get; set; }
         public bool Executed { get; set; }
-        public Queue<Item<T>> Items { get; set; }
+        public LinkedList<Item<T>> Items { get; set; }
 
-        public Batch(int id, Queue<Item<T>> items)
+        public Batch(int id, LinkedList<Item<T>> items)
         {
             Id = id;
             Executed = false;
             Items = items;
+        }
+
+        public Batch(int id)
+        {
+            Id = id;
+            Executed = false;
+            Items = new LinkedList<Item<T>>();
         }
     }
 }

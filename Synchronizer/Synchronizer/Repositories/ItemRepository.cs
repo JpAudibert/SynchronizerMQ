@@ -26,7 +26,7 @@ public class ItemRepository: IItemRepository<string>
                 throw new ArgumentNullException("Item list is null");
             }
 
-            // workaround
+            // workaround -> return a list without the deleted item
             _batch.Items = new LinkedList<Item<string>>(_batch.Items.Where(items => items.Id != item.Id));
 
         }
